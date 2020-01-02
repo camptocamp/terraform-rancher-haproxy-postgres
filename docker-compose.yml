@@ -1,0 +1,17 @@
+version: '2'
+services:
+  haproxy:
+    image: haproxy:1.8
+    command: haproxy -c -f /run/secrets/haproxy-config
+    secrets:
+    - haproxy-config
+    labels:
+      io.rancher.container.pull_image: always
+  prometheus-exporter:
+    image: prom/haproxy-exporter
+    labels:
+      io.rancher.container.pull_image: always
+      prometheus_port: '9101'
+secrets:
+  haproxy-config:
+    external: true
