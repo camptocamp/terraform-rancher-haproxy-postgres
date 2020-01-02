@@ -2,7 +2,7 @@ version: '2'
 services:
   haproxy:
     image: haproxy:1.8
-    command: haproxy -c -f /run/secrets/haproxy-config
+    command: haproxy -f /run/secrets/haproxy-config
     secrets:
       - source: ${name}-haproxy-config
         target: haproxy-config
