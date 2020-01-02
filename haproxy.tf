@@ -6,7 +6,7 @@ resource "rancher_stack" "haproxy" {
   finish_upgrade  = true
   depends_on      = ["rancher_secret.haproxy-config"]
 
-  docker_compose  = file("${path.module}/docker-compose.yml")
+  docker_compose  = templatefile("${path.module}/docker-compose.yml", { name = var.name })
   rancher_compose = file("${path.module}/rancher-compose.yml")
 
 }
