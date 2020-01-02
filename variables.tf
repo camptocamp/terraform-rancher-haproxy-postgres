@@ -3,11 +3,6 @@ variable "name" {
   description = "Name of the rancher stack"
 }
 
-variable "environment_name" {
-  type        = string
-  description = "Name of rancher env"
-}
-
 variable "environment_id" {
   type        = string
   description = "Identifier of rancher env"
