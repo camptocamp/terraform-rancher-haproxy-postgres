@@ -1,0 +1,11 @@
+version: '2'
+services:
+  haproxy:
+    start_on_create: true
+    metadata:
+      user: ${user}
+      password: ${password}
+      dbname: ${dbname}
+      version: ${version}
+  prometheus-exporter:
+    start_on_create: true

@@ -1,6 +1,0 @@
-version: '2'
-services:
-  haproxy:
-    start_on_create: true
-  prometheus-exporter:
-    start_on_create: true

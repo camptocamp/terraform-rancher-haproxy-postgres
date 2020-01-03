@@ -24,3 +24,25 @@ variable "target_maxCount" {
   description = "Max entry in the DNS record"
   default     = 8
 }
+
+variable "db_user" {
+  type        = string
+  description = "Username to use to connect DB"
+  default     = "postgres"
+}
+
+variable "db_password" {
+  type        = string
+  description = "Password to use to connect DB"
+}
+
+variable "db_name" {
+  type        = string
+  description = "Name of the database"
+  default     = "postgres"
+}
+
+variable "db_version" {
+  type        = number
+  description = "Major version of the postgres cluster"
+}
