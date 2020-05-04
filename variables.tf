@@ -46,3 +46,15 @@ variable "db_version" {
   type        = number
   description = "Major version of the postgres cluster"
 }
+
+variable "global" {
+  type        = bool
+  description = "Deploy haproxy on all hosts"
+  default     = false
+}
+
+variable "affinity" {
+  type        = string
+  description = "Host Affinity label value. ex: application=true or application=true,integration=true"
+  default     = ""
+}

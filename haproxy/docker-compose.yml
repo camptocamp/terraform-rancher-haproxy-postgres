@@ -1,18 +1,30 @@
 version: '2'
 services:
-  haproxy:
-    image: haproxy:1.8
-    command: haproxy -f /run/secrets/haproxy-config
-    secrets:
-      - source: ${name}-haproxy-config
-        target: haproxy-config
-    labels:
-      io.rancher.container.pull_image: always
   prometheus-exporter:
     image: prom/haproxy-exporter
     labels:
       io.rancher.container.pull_image: always
       prometheus_port: '9101'
+      %{~ if affinity != "" ~}
+      io.rancher.scheduler.affinity:host_label: ${affinity}
+      %{~ endif ~}
+  haproxy:
+    image: haproxy:1.8
+    secrets:
+    - source: ${name}-haproxy-config
+      target: haproxy-config
+    command:
+    - haproxy
+    - -f
+    - /run/secrets/haproxy-config
+    labels:
+      io.rancher.container.pull_image: always
+      %{~ if global ~}
+      io.rancher.scheduler.global: 'true'
+      %{~ endif ~}
+      %{~ if affinity != "" ~}
+      io.rancher.scheduler.affinity:host_label: ${affinity}
+      %{~ endif ~}
 secrets:
   ${name}-haproxy-config:
-    external: true
+    external: 'true'

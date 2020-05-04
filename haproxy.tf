@@ -7,7 +7,9 @@ resource "rancher_stack" "haproxy" {
   depends_on      = ["rancher_secret.haproxy-config"]
 
   docker_compose  = templatefile("${path.module}/haproxy/docker-compose.yml",
-                                 { name = var.name })
+                                 { name = var.name,
+                                   global = var.global,
+                                   affinity = var.affinity })
   rancher_compose = templatefile("${path.module}/haproxy/rancher-compose.yml",
                                  { user = var.db_user,
                                    password = var.db_password,

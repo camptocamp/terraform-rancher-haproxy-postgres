@@ -1,11 +1,13 @@
 version: '2'
 services:
-  haproxy:
+  prometheus-exporter:
+    scale: 1
     start_on_create: true
+  haproxy:
     metadata:
-      user: ${user}
       password: ${password}
       dbname: ${dbname}
+      user: ${user}
       version: ${version}
-  prometheus-exporter:
+    scale: 1
     start_on_create: true
