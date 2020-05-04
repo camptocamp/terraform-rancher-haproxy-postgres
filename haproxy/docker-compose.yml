@@ -2,6 +2,7 @@ version: '2'
 services:
   prometheus-exporter:
     image: prom/haproxy-exporter
+    command: --haproxy.scrape-uri="http://haproxy:8008/stats;csv"
     labels:
       io.rancher.container.pull_image: always
       prometheus_port: '9101'
