@@ -9,5 +9,7 @@ services:
       dbname: ${dbname}
       user: ${user}
       version: ${version}
+    %{~ if ! global ~}
     scale: 1
+    %{~ endif ~}
     start_on_create: true

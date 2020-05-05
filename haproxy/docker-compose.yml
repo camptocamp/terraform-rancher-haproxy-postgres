@@ -2,13 +2,14 @@ version: '2'
 services:
   prometheus-exporter:
     image: prom/haproxy-exporter
-    command: --haproxy.scrape-uri="http://haproxy:8008/stats;csv"
+    command:
+    - --haproxy.scrape-uri=http://haproxy:8008/stats;csv
     labels:
-      io.rancher.container.pull_image: always
-      prometheus_port: '9101'
       %{~ if affinity != "" ~}
       io.rancher.scheduler.affinity:host_label: ${affinity}
       %{~ endif ~}
+      io.rancher.container.pull_image: always
+      prometheus_port: '9101'
   haproxy:
     image: haproxy:1.8
     secrets:
@@ -19,12 +20,12 @@ services:
     - -f
     - /run/secrets/haproxy-config
     labels:
+      %{~ if affinity != "" ~}
+      io.rancher.scheduler.affinity:host_label: ${affinity}
+      %{~ endif ~}
       io.rancher.container.pull_image: always
       %{~ if global ~}
       io.rancher.scheduler.global: 'true'
-      %{~ endif ~}
-      %{~ if affinity != "" ~}
-      io.rancher.scheduler.affinity:host_label: ${affinity}
       %{~ endif ~}
 secrets:
   ${name}-haproxy-config:
