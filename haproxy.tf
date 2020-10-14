@@ -4,7 +4,7 @@ resource "rancher_stack" "haproxy" {
   environment_id  = var.environment_id
   start_on_create = true
   finish_upgrade  = true
-  depends_on      = ["rancher_secret.haproxy-config"]
+  depends_on      = [rancher_secret.haproxy-config]
 
   docker_compose = templatefile("${path.module}/haproxy/docker-compose.yml",
     { name   = var.name,
