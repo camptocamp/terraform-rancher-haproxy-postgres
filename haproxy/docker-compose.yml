@@ -14,11 +14,10 @@ services:
     image: haproxy:1.8
     secrets:
     - source: ${name}-haproxy-config
-      target: haproxy-config
     command:
     - haproxy
     - -f
-    - /run/secrets/haproxy-config
+    - /run/secrets/${name}-haproxy-config
     labels:
       %{~ if affinity != "" ~}
       io.rancher.scheduler.affinity:host_label: ${affinity}
