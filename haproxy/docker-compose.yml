@@ -13,7 +13,7 @@ services:
   haproxy:
     image: haproxy:1.8
     secrets:
-    - source: ${name}-haproxy-config
+    - ${name}-haproxy-config
     command:
     - haproxy
     - -f
