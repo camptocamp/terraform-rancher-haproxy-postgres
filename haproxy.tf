@@ -21,7 +21,7 @@ resource rancher_secret "haproxy-config" {
   name           = "${var.name}-haproxy-config"
   environment_id = var.environment_id
   value          = templatefile("${path.module}/haproxy/haproxy.cfg",
-    { fqdn = var.target_fqdn,
+    { fqdn     = var.target_fqdn,
       maxCount = var.target_maxCount,
-      port = var.target_port })
+      port     = var.target_port })
 }
