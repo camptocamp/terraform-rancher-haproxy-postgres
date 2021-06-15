@@ -7,6 +7,6 @@ services:
       user: ${user}
       version: ${version}
     %{~ if ! global ~}
-    scale: 1
+    scale: 2
     %{~ endif ~}
     start_on_create: true
