@@ -6,7 +6,7 @@ services:
       dbname: ${dbname}
       user: ${user}
       version: ${version}
-    %{~ if ! global ~}
+    %{~ if global != "true" ~}
     scale: 2
     %{~ endif ~}
     start_on_create: true

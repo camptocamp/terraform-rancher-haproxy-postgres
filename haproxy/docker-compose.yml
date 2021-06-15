@@ -13,7 +13,7 @@ services:
       io.rancher.scheduler.affinity:host_label: ${affinity}
       %{~ endif ~}
       io.rancher.container.pull_image: always
-      %{~ if global ~}
+      %{~ if global == "true" ~}
       io.rancher.scheduler.global: 'true'
       %{~ endif ~}
       prometheus_port: '8008'
