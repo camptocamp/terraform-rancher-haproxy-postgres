@@ -53,6 +53,12 @@ variable "global" {
   default     = false
 }
 
+variable "scale" {
+  type        = number
+  description = "How many instance to deploy"
+  default     = 2
+}
+
 variable "affinity" {
   type        = string
   description = "Host Affinity label value. ex: application=true or application=true,integration=true"

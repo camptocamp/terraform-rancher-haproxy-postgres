@@ -19,6 +19,7 @@ resource "rancher_stack" "haproxy" {
       password = var.db_password,
       dbname   = var.db_name,
       version  = var.db_version,
+      scale    = var.scale,
     }
   )
 }
